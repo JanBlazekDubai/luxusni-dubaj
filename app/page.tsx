@@ -335,8 +335,8 @@ function Hero() {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <Image src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=80" alt="Dubai luxury skyline" fill className="object-cover object-center" priority />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/55 to-black/80" />
+        <Image src="https://ekszxvqqgyemywbbrjlj.supabase.co/storage/v1/object/public/luxusni-projekty/hero.jpg" alt="Dubai luxury skyline" fill className="object-cover object-center" priority />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/80" />
       </div>
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto pt-20">
         <p className="text-[#C9A84C] text-[10px] tracking-[0.6em] uppercase mb-10 font-light">LUXUSNÍ NEMOVITOSTI V DUBAJI</p>
