@@ -629,24 +629,94 @@ function Projects() {
 
 // ─── JOURNEY ─────────────────────────────────────────────────────────────────
 
+const STEP_ICON_PATHS = [
+  'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6',
+  'M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+  'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+  'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z',
+  'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
+  'M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3',
+  'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
+  'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4',
+  'M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7',
+  'M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z',
+]
+
+function StepCard({ step, iconPath }: { step: typeof STEPS[0]; iconPath: string }) {
+  return (
+    <div className="bg-[#111] border border-[#C9A84C]/18 hover:border-[#C9A84C]/45 transition-colors duration-300 p-6 w-full">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5 text-[#C9A84C] mb-4">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={iconPath} />
+      </svg>
+      <h3 className="text-white text-sm font-medium tracking-wide mb-2">{step.title}</h3>
+      <p className="text-white/45 text-sm leading-relaxed">{step.desc}</p>
+    </div>
+  )
+}
+
 function Journey() {
   return (
     <section id="cesta" className="py-28 md:py-36 bg-[#0D0D0D]">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-20">
           <p className="text-[#C9A84C] text-[10px] tracking-[0.55em] uppercase mb-5">Proces</p>
-          <h2 className="font-[family-name:var(--font-cormorant)] text-5xl md:text-6xl font-light text-white mb-4">Vaše cesta k luxusní nemovitosti</h2>
+          <h2 className="font-[family-name:var(--font-cormorant)] text-5xl md:text-6xl font-light text-white mb-4">
+            Vaše cesta k luxusní nemovitosti
+          </h2>
           <p className="text-white/40 tracking-widest text-sm">Komplexní servis od prvního kontaktu po předání klíčů</p>
         </div>
-        <div className="grid md:grid-cols-2">
+
+        {/* ── Desktop: alternating timeline ── */}
+        <div className="hidden md:block relative">
+          {/* Center golden line */}
+          <div className="absolute left-1/2 -translate-x-px top-0 bottom-0 w-px"
+            style={{ background: 'linear-gradient(to bottom, transparent 0%, #C9A84C55 6%, #C9A84C55 94%, transparent 100%)' }} />
+
+          <div className="space-y-4">
+            {STEPS.map((step, i) => {
+              const isLeft = i % 2 === 0
+              return (
+                <div key={step.n} className="relative flex items-center py-3 min-h-[90px]">
+                  {/* Left slot */}
+                  <div className="w-1/2 pr-16 flex justify-end">
+                    {isLeft && <StepCard step={step} iconPath={STEP_ICON_PATHS[i]} />}
+                  </div>
+
+                  {/* Center dot with number */}
+                  <div className="absolute left-1/2 -translate-x-1/2 z-10 w-12 h-12 rounded-full bg-[#0D0D0D] border-2 border-[#C9A84C] flex items-center justify-center flex-shrink-0">
+                    <span className="font-[family-name:var(--font-cormorant)] text-[#C9A84C] text-lg font-light leading-none">
+                      {step.n}
+                    </span>
+                  </div>
+
+                  {/* Right slot */}
+                  <div className="w-1/2 pl-16">
+                    {!isLeft && <StepCard step={step} iconPath={STEP_ICON_PATHS[i]} />}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* ── Mobile: stacked with left line ── */}
+        <div className="md:hidden space-y-4">
           {STEPS.map((step, i) => (
-            <div key={step.n} className={`group flex gap-6 p-8 border-b border-white/5 hover:bg-white/[0.02] transition-colors duration-200 ${i % 2 === 0 ? 'md:border-r border-white/5' : ''}`}>
-              <div className="flex-shrink-0 w-12 h-12 border border-[#C9A84C]/25 group-hover:border-[#C9A84C] flex items-center justify-center transition-colors duration-300">
-                <span className="font-[family-name:var(--font-cormorant)] text-xl text-[#C9A84C] font-light">{step.n}</span>
+            <div key={step.n} className="flex gap-4 items-stretch">
+              {/* Dot + connector column */}
+              <div className="flex flex-col items-center flex-shrink-0 w-8">
+                <div className="w-8 h-8 rounded-full bg-[#0D0D0D] border border-[#C9A84C] flex items-center justify-center flex-shrink-0 z-10">
+                  <span className="font-[family-name:var(--font-cormorant)] text-[#C9A84C] text-sm leading-none">
+                    {step.n}
+                  </span>
+                </div>
+                {i < STEPS.length - 1 && (
+                  <div className="w-px flex-1 mt-2 bg-[#C9A84C]/25" />
+                )}
               </div>
-              <div>
-                <h3 className="text-white text-sm font-medium tracking-wide mb-2">{step.title}</h3>
-                <p className="text-white/45 text-sm leading-relaxed">{step.desc}</p>
+              {/* Card */}
+              <div className="flex-1 pb-4">
+                <StepCard step={step} iconPath={STEP_ICON_PATHS[i]} />
               </div>
             </div>
           ))}
