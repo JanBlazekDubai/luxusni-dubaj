@@ -726,6 +726,104 @@ function Journey() {
   )
 }
 
+// ─── PARTNERS ────────────────────────────────────────────────────────────────
+
+type Partner = {
+  id: number
+  name: string
+  description: string | null
+  logo_url: string | null
+  website_url: string | null
+}
+
+function PartnerInitials({ name }: { name: string }) {
+  const initials = name
+    .split(' ')
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join('')
+    .toUpperCase()
+  return (
+    <div className="w-16 h-16 bg-[#C9A84C]/10 border border-[#C9A84C]/30 flex items-center justify-center flex-shrink-0">
+      <span className="font-[family-name:var(--font-cormorant)] text-[#C9A84C] text-xl font-light">{initials}</span>
+    </div>
+  )
+}
+
+function Partners() {
+  const [partners, setPartners] = useState<Partner[]>([])
+  const [loaded, setLoaded] = useState(false)
+
+  useEffect(() => {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    if (!url || !key) { setLoaded(true); return }
+
+    fetch(`${url}/rest/v1/partners?show_on_web=eq.true&order=id.asc`, {
+      headers: {
+        apikey: key,
+        Authorization: `Bearer ${key}`,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((r) => r.json())
+      .then((data: Partner[]) => { setPartners(Array.isArray(data) ? data : []) })
+      .catch(() => {})
+      .finally(() => setLoaded(true))
+  }, [])
+
+  if (!loaded || partners.length === 0) return null
+
+  return (
+    <section className="py-28 md:py-36 bg-[#111111]">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <p className="text-[#C9A84C] text-[10px] tracking-[0.55em] uppercase mb-5">Spolupráce</p>
+          <h2 className="font-[family-name:var(--font-cormorant)] text-5xl md:text-6xl font-light text-white mb-4">
+            Naši partneři
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {partners.map((p) => (
+            <article key={p.id} className="bg-[#0D0D0D] border border-[#C9A84C]/18 hover:border-[#C9A84C]/45 transition-colors duration-300 p-6 flex flex-col">
+              <div className="flex items-center gap-4 mb-4">
+                {p.logo_url ? (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img src={p.logo_url} alt={p.name} className="w-16 h-16 object-contain flex-shrink-0" />
+                ) : (
+                  <PartnerInitials name={p.name} />
+                )}
+                <h3 className="font-[family-name:var(--font-cormorant)] text-xl font-light text-white leading-tight">
+                  {p.name}
+                </h3>
+              </div>
+
+              {p.description && (
+                <p className="text-white/50 text-sm leading-relaxed mb-5 flex-1">{p.description}</p>
+              )}
+
+              {p.website_url && (
+                <a
+                  href={p.website_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-auto inline-flex items-center gap-2 text-[#C9A84C] text-[10px] tracking-[0.3em] uppercase hover:text-white transition-colors duration-200"
+                >
+                  Navštívit web
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-3.5 h-3.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              )}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ─── CONTACT ─────────────────────────────────────────────────────────────────
 
 function Contact() {
@@ -860,6 +958,7 @@ export default function Page() {
         <Intro />
         <Projects />
         <Journey />
+        <Partners />
         <Contact />
       </main>
       <Footer />
