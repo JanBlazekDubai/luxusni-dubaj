@@ -925,6 +925,12 @@ function Contact() {
                   className="w-full py-4 bg-[#C9A84C] text-black text-[10px] tracking-[0.35em] uppercase font-medium hover:bg-[#b8963d] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
                   {sending ? 'Odesílání…' : 'Odeslat'}
                 </button>
+                <p className="text-white/30 text-xs leading-relaxed text-center">
+                  Odesláním formuláře souhlasíte se zpracováním osobních údajů dle našich{' '}
+                  <a href="/zasady-zpracovani-osobnich-udaju" className="text-[#C9A84C] hover:text-white transition-colors underline-offset-2 hover:underline">
+                    zásad
+                  </a>.
+                </p>
               </form>
             )}
           </div>
@@ -941,7 +947,10 @@ function Footer() {
     <footer className="bg-[#0D0D0D] border-t border-white/5 py-10">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-white/25 text-xs tracking-widest">
         <span>© 2025 Jan Blažek | Luxury Real Estate Dubai</span>
-        <a href="https://bytyvdubaji.cz" target="_blank" rel="noopener noreferrer" className="hover:text-[#C9A84C] transition-colors">bytyvdubaji.cz</a>
+        <div className="flex items-center gap-6">
+          <a href="/zasady-zpracovani-osobnich-udaju" className="hover:text-[#C9A84C] transition-colors">Zásady zpracování osobních údajů</a>
+          <a href="https://bytyvdubaji.cz" target="_blank" rel="noopener noreferrer" className="hover:text-[#C9A84C] transition-colors">bytyvdubaji.cz</a>
+        </div>
       </div>
     </footer>
   )
