@@ -19,6 +19,10 @@ export const metadata: Metadata = {
   title: 'Jan Blažek | Luxury Real Estate Dubai',
   description:
     'Výběrová portfolio ultra-prémiových rezidencí v Dubaji. Osobní přístup. Komplexní servis.',
+  icons: {
+    icon: '/favicon.png',
+    apple: '/favicon.png',
+  },
 }
 
 const WhatsAppIcon = () => (
