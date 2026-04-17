@@ -20,7 +20,10 @@ export const metadata: Metadata = {
   description:
     'Výběrová portfolio ultra-prémiových rezidencí v Dubaji. Osobní přístup. Komplexní servis.',
   icons: {
-    icon: '/favicon.png',
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon.png', type: 'image/png' },
+    ],
     apple: '/favicon.png',
   },
 }
