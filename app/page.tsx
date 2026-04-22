@@ -896,29 +896,29 @@ function Contact() {
                   <div>
                     <label className="block text-[9px] tracking-[0.3em] uppercase text-white/35 mb-2">Jméno *</label>
                     <input required type="text" value={form.firstName} onChange={set('firstName')}
-                      className="w-full bg-white/4 border border-white/10 focus:border-[#C9A84C] text-white px-4 py-3 outline-none transition-colors text-sm" />
+                      className="w-full bg-white/4 border border-white/10 focus:border-[#C9A84C] text-[#1a1a1a] px-4 py-3 outline-none transition-colors text-sm" />
                   </div>
                   <div>
                     <label className="block text-[9px] tracking-[0.3em] uppercase text-white/35 mb-2">Příjmení *</label>
                     <input required type="text" value={form.lastName} onChange={set('lastName')}
-                      className="w-full bg-white/4 border border-white/10 focus:border-[#C9A84C] text-white px-4 py-3 outline-none transition-colors text-sm" />
+                      className="w-full bg-white/4 border border-white/10 focus:border-[#C9A84C] text-[#1a1a1a] px-4 py-3 outline-none transition-colors text-sm" />
                   </div>
                 </div>
                 <div>
                   <label className="block text-[9px] tracking-[0.3em] uppercase text-white/35 mb-2">Telefon *</label>
                   <input required type="tel" value={form.phone} onChange={set('phone')}
-                    className="w-full bg-white/4 border border-white/10 focus:border-[#C9A84C] text-white px-4 py-3 outline-none transition-colors text-sm" />
+                    className="w-full bg-white/4 border border-white/10 focus:border-[#C9A84C] text-[#1a1a1a] px-4 py-3 outline-none transition-colors text-sm" />
                 </div>
                 <div>
                   <label className="block text-[9px] tracking-[0.3em] uppercase text-white/35 mb-2">Email *</label>
                   <input required type="email" value={form.email} onChange={set('email')}
-                    className="w-full bg-white/4 border border-white/10 focus:border-[#C9A84C] text-white px-4 py-3 outline-none transition-colors text-sm" />
+                    className="w-full bg-white/4 border border-white/10 focus:border-[#C9A84C] text-[#1a1a1a] px-4 py-3 outline-none transition-colors text-sm" />
                 </div>
                 <div>
                   <label className="block text-[9px] tracking-[0.3em] uppercase text-white/35 mb-2">Zpráva</label>
                   <textarea id="msg" rows={4} value={form.message} onChange={set('message')}
                     onInput={(e) => setForm((f) => ({ ...f, message: (e.target as HTMLTextAreaElement).value }))}
-                    className="w-full bg-white/4 border border-white/10 focus:border-[#C9A84C] text-white px-4 py-3 outline-none transition-colors text-sm resize-none" />
+                    className="w-full bg-white/4 border border-white/10 focus:border-[#C9A84C] text-[#1a1a1a] px-4 py-3 outline-none transition-colors text-sm resize-none" />
                 </div>
                 {err && <p className="text-red-400 text-sm">{err}</p>}
                 <button type="submit" disabled={sending}
