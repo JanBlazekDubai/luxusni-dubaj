@@ -402,7 +402,7 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: (p: Projec
   const mainImg = storagePublicUrl('luxusni-projekty', project.folder, 'Main.webp')
 
   return (
-    <article className="group bg-[#0D0D0D] border border-white/8 hover:border-[#C9A84C]/40 transition-all duration-300 flex flex-col">
+    <article className="group bg-[#0D0D0D] border border-white/30 hover:border-[#C9A84C]/40 transition-all duration-300 flex flex-col">
       <div className="relative h-56 overflow-hidden">
         <Image src={mainImg} alt={project.name} fill className="object-cover group-hover:scale-105 transition-transform duration-700" unoptimized />
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent" />
