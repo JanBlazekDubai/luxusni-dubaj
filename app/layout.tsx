@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, Cormorant_Garamond } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 
 const inter = Inter({
@@ -39,6 +40,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="cs" className={`${inter.variable} ${cormorant.variable}`}>
       <body className="bg-[#0D0D0D] text-white font-[family-name:var(--font-inter)]">
         {children}
+
+        {/* Google Analytics GA4 */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-8K7V8Z51EG" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-8K7V8Z51EG');
+          `}
+        </Script>
 
         {/* Floating WhatsApp */}
         <a
