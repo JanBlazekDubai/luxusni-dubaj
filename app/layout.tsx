@@ -27,6 +27,9 @@ export const metadata: Metadata = {
     ],
     apple: '/favicon.png',
   },
+  other: {
+    'google-site-verification': 'N0qBx_BYZ_3vNjI3HjUE3_wLL-S6wXespN-JUP_Iu4g',
+  },
 }
 
 const WhatsAppIcon = () => (
