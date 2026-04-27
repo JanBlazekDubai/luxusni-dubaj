@@ -30,6 +30,9 @@ export const metadata: Metadata = {
   other: {
     'google-site-verification': 'N0qBx_BYZ_3vNjI3HjUE3_wLL-S6wXespN-JUP_Iu4g',
   },
+  alternates: {
+    canonical: 'https://www.luxusnidubaj.cz',
+  },
 }
 
 const WhatsAppIcon = () => (
